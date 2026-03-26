@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pemesanan QR Coffee Shop</title>
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Landing Page (QR Simulation) -->
+    <div id="landing-page" class="page active">
+        <header>
+            <img src="img/logo.png" alt="Brew & Bites Logo" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin:0 auto 15px auto;">
+            <h1>Brew & Bites</h1>
+            <p>Silakan scan QR Meja untuk mulai memesan</p>
+        </header>
+        <div class="qr-container" id="qr-container">
+            <!-- QR Codes will be injected here via JS -->
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app-container" class="page">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="img/logo.png" alt="Logo" style="width:35px; height:35px; border-radius:50%; object-fit:cover;">
+                    <h2 style="margin:0;">Brew & Bites</h2>
+                </div>
+                <span id="active-table-badge" class="table-badge">Meja --</span>
+            </div>
+        </header>
+
+        <!-- Menu Views Container -->
+        <main class="main-content">
+            <!-- Menu View -->
+            <div id="view-menu" class="view active">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-category="All">Semua</button>
+                    <button class="tab-btn" data-category="Coffee">Kopi</button>
+                    <button class="tab-btn" data-category="Snack">Camilan</button>
+                </div>
+                <div class="product-grid" id="product-grid">
+                    <!-- Products rendered via JS -->
+                </div>
+            </div>
+
+            <!-- Cart View -->
+            <div id="view-cart" class="view">
+                <h3>Keranjang Pesanan</h3>
+                <div id="cart-items-container">
+                    <!-- Cart items rendered via JS -->
+                </div>
+                
+                <div class="cart-summary hide" id="cart-summary">
+                    <div class="customer-info-section mb-4" style="border-bottom: 1px dashed var(--border-color); padding-bottom: 15px;">
+                        <label for="customer-name" style="display:block; font-size:0.9rem; margin-bottom:8px; color:var(--text-secondary); font-weight:500;">Nama Pemesan (Customer)</label>
+                        <input type="text" id="customer-name" placeholder="Masukkan nama Anda..." style="width:100%; padding:12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-primary); font-family:inherit; outline:none;" onfocus="this.style.outline='1px solid var(--accent)'" onblur="this.style.outline='none'" required>
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>PB1 (10%)</span>
+                        <span id="summary-tax">Rp 0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="summary-total">Rp 0</span>
+                    </div>
+                    <button id="btn-checkout" class="btn-primary btn-block mt-4">Pilih Pembayaran</button>
+                </div>
+                
+                <div id="empty-cart-msg" class="empty-state">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Keranjang masih kosong</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Sticky Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-target="view-menu">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+            </button>
+            <button class="nav-item" data-target="view-cart">
+                <div class="cart-icon-wrapper">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-badge">0</span>
+                </div>
+                <span>Keranjang</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Customization Modal -->
+    <div id="customization-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sesuaikan Pesanan</h3>
+                <button class="btn-close" id="btn-close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-product-info" class="modal-product-info">
+                    <!-- Info populates here -->
+                </div>
+
+                <div class="customization-section">
+                    <label>Pilihan Cepat</label>
+                    <div class="chip-group" id="quick-chips">
+                        <button class="chip">Less Sugar</button>
+                        <button class="chip">Normal Sugar</button>
+                        <button class="chip">Extra Ice</button>
+                        <button class="chip">Less Ice</button>
+                        <button class="chip">Hot</button>
+                    </div>
+                </div>
+
+                <div class="customization-section">
+                    <label for="custom-notes">Catatan Tambahan</label>
+                    <textarea id="custom-notes" placeholder="Misal: Tanpa sedotan, susu pisah..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-add-to-cart" class="btn-primary btn-block">Tambah ke Keranjang - <span id="modal-price">Rp 0</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Selection Modal -->
+    <div id="payment-modal" class="modal-overlay">
+        <div class="modal-content bottom-sheet">
+            <div class="modal-header">
+                <h3>Metode Pembayaran</h3>
+                <button class="btn-close" id="btn-close-payment"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-methods">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="QRIS" checked>
+                        <div class="payment-card">
+                            <i class="fas fa-qrcode"></i>
+                            <div>
+                                <h4>QRIS</h4>
+                                <p>Gopay, OVO, ShopeePay</p>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="Bank Transfer">
+                        <div class="payment-card">
+                            <i class="fas fa-university"></i>
+                            <div>
+                                <h4>Transfer Bank</h4>
+                                <p>BCA, Mandiri, BNI</p>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="E-Wallet">
+                        <div class="payment-card">
+                            <i class="fas fa-wallet"></i>
+                            <div>
+                                <h4>E-Wallet</h4>
+                                <p>Dana, LinkAja</p>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="Cash">
+                        <div class="payment-card">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <h4>Tunai (Bayar di Kasir)</h4>
+                                <p>Bayar langsung ke kasir</p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-confirm-payment" class="btn-primary btn-block">Konfirmasi Pembayaran</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thermal Digital Receipt Modal -->
+    <div id="receipt-modal" class="modal-overlay">
+        <div class="modal-content receipt-sheet">
+            <div class="modal-header hide-print">
+                <h3>Struk Digital</h3>
+                <button class="btn-close" id="btn-close-receipt"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="receipt-container">
+                <!-- Receipt inner will be dynamically generated here -->
+            </div>
+            <div class="modal-footer hide-print">
+                <button class="btn-secondary btn-block mb-2" onclick="window.print()"><i class="fas fa-print"></i> Cetak/Simpan PDF</button>
+                <button id="btn-finish-order" class="btn-primary btn-block">Selesai Berbelanja</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/database.js"></script>
+    <script src="js/cart-engine.js"></script>
+    <script src="js/qr-logic.js"></script>
+    <script src="js/render-ui.js"></script>
+    <script src="js/payment-handler.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

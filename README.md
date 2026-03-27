@@ -3,6 +3,14 @@
 <div align="center">
   <img src="assets/img/vintage_logo.png" alt="Brew & Bites Logo" width="150" style="border-radius: 50%; border: 3px solid #1e592f; margin-bottom: 10px;">
   
+  <p>
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
+    <img src="https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript">
+    <img src="https://img.shields.io/badge/HTML5-Semantic-E34F26?logo=html5&logoColor=white" alt="HTML5">
+    <img src="https://img.shields.io/badge/CSS3-Native_Variables-1572B6?logo=css3&logoColor=white" alt="CSS3">
+    <img src="https://img.shields.io/badge/Status-Production_Ready_SPA-brightgreen" alt="Status">
+  </p>
+
   <p><strong>"Sip, Chill, & Vibe"</strong></p>
   
   <p>A modern, lightweight, and mobile-first Single-Page Application (SPA) designed specifically for coffee shops with a <strong>Street Vintage 1999-2000</strong> aesthetic. Customers can scan a QR code from their table, browse an interactive menu, customize orders, and checkout seamlessly—all directly from their smartphones.</p>
@@ -71,13 +79,13 @@ Since this project has absolutely no backend or build-step dependencies (No Node
 High-quality, pre-generated 500x500 PNG QR Codes are already available in the `assets/QR/` directory. You can immediately print them and place them on your tables.
 
 <div align="center">
-  <img src="assets/QR/Meja_01_t1.png" alt="QR Meja 01" width="150" style="border: 2px solid #1e592f;">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/QR/Meja_02_t2.png" alt="QR Meja 02" width="150" style="border: 2px solid #1e592f;">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/QR/Meja_03_t3.png" alt="QR Meja 03" width="150" style="border: 2px solid #1e592f;">
-  <br>
-  <p style="margin-top: 10px;"><em>Meja 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Meja 02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Meja 03</em></p>
+  <table>
+    <tr>
+      <td align="center"><img src="assets/QR/Meja_01_t1.png" alt="QR Meja 01" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 01</em></td>
+      <td align="center"><img src="assets/QR/Meja_02_t2.png" alt="QR Meja 02" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 02</em></td>
+      <td align="center"><img src="assets/QR/Meja_03_t3.png" alt="QR Meja 03" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 03</em></td>
+    </tr>
+  </table>
 </div>
 
 ## 🎨 Theme & Design System

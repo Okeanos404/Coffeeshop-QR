@@ -71,11 +71,13 @@ Since this project has absolutely no backend or build-step dependencies (No Node
 High-quality, pre-generated 500x500 PNG QR Codes are already available in the `assets/QR/` directory. You can immediately print them and place them on your tables.
 
 <div align="center">
-  <img src="assets/QR/Meja_01_t1.png" alt="QR Meja 01" width="150" style="margin: 0 10px; border: 2px solid #1e592f;">
-  <img src="assets/QR/Meja_02_t2.png" alt="QR Meja 02" width="150" style="margin: 0 10px; border: 2px solid #1e592f;">
-  <img src="assets/QR/Meja_03_t3.png" alt="QR Meja 03" width="150" style="margin: 0 10px; border: 2px solid #1e592f;">
+  <img src="assets/QR/Meja_01_t1.png" alt="QR Meja 01" width="150" style="border: 2px solid #1e592f;">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/QR/Meja_02_t2.png" alt="QR Meja 02" width="150" style="border: 2px solid #1e592f;">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/QR/Meja_03_t3.png" alt="QR Meja 03" width="150" style="border: 2px solid #1e592f;">
   <br>
-  <p style="margin-top: 10px;"><em>Meja 01 &nbsp;&nbsp;|&nbsp;&nbsp; Meja 02 &nbsp;&nbsp;|&nbsp;&nbsp; Meja 03</em></p>
+  <p style="margin-top: 10px;"><em>Meja 01 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Meja 02 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Meja 03</em></p>
 </div>
 
 ## 🎨 Theme & Design System

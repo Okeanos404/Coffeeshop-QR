@@ -18,9 +18,9 @@
     <!-- Landing Page (QR Simulation) -->
     <div id="landing-page" class="page active">
         <header>
-            <img src="img/logo.png" alt="Brew & Bites Logo" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin:0 auto 15px auto;">
-            <h1>Brew & Bites</h1>
-            <p>Silakan scan QR Meja untuk mulai memesan</p>
+            <img src="assets/img/vintage_logo.png" alt="Brew & Bites Logo" style="width:120px; height:auto; border: 3px solid var(--border-color); box-shadow: 4px 4px 0px var(--border-color); margin:0 auto 15px auto; background: var(--card-bg); padding: 5px;">
+            <h1 style="text-shadow: 3px 3px 0px var(--border-color); margin-bottom: 5px;">Brew & Bites</h1>
+            <p style="font-size: 1.1rem; font-weight: 700;">Silakan scan QR Meja untuk mulai memesan</p>
         </header>
         <div class="qr-container" id="qr-container">
             <!-- QR Codes will be injected here via JS -->
@@ -33,7 +33,7 @@
         <header class="app-header">
             <div class="header-content">
                 <div style="display:flex; align-items:center; gap:10px;">
-                    <img src="img/logo.png" alt="Logo" style="width:35px; height:35px; border-radius:50%; object-fit:cover;">
+                    <img src="assets/img/vintage_logo.png" alt="Logo" style="width:35px; height:35px; border: 2px solid var(--border-color); object-fit:cover; background: #fff;">
                     <h2 style="margin:0;">Brew & Bites</h2>
                 </div>
                 <span id="active-table-badge" class="table-badge">Meja --</span>
@@ -44,9 +44,19 @@
         <main class="main-content">
             <!-- Menu View -->
             <div id="view-menu" class="view active">
+                <!-- Welcome Banner -->
+                <div style="background: var(--card-bg); border: 2px solid var(--border-color); box-shadow: 4px 4px 0px var(--border-color); padding: 20px; text-align: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 1.5rem; text-transform: uppercase; font-weight: 800; margin-bottom: 5px; color: var(--accent); text-shadow: 1px 1px 0px var(--border-color); font-style: italic;">Sip, Chill, & Vibe</h2>
+                    <p style="font-weight: 700; font-size: 0.9rem; color: var(--text-primary);">
+                        Udah dapet spot pw? Duduk santai aja, pesananmu biar kami yang siapin.<br>
+                        Cek menu asik kita di bawah dan langsung order dari mejamu. Enjoy the retro vibes!
+                    </p>
+                </div>
+
                 <div class="category-tabs">
                     <button class="tab-btn active" data-category="All">Semua</button>
                     <button class="tab-btn" data-category="Coffee">Kopi</button>
+                    <button class="tab-btn" data-category="Non-Coffee">Non-Kopi</button>
                     <button class="tab-btn" data-category="Snack">Camilan</button>
                 </div>
                 <div class="product-grid" id="product-grid">
@@ -63,8 +73,8 @@
                 
                 <div class="cart-summary hide" id="cart-summary">
                     <div class="customer-info-section mb-4" style="border-bottom: 1px dashed var(--border-color); padding-bottom: 15px;">
-                        <label for="customer-name" style="display:block; font-size:0.9rem; margin-bottom:8px; color:var(--text-secondary); font-weight:500;">Nama Pemesan (Customer)</label>
-                        <input type="text" id="customer-name" placeholder="Masukkan nama Anda..." style="width:100%; padding:12px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-primary); font-family:inherit; outline:none;" onfocus="this.style.outline='1px solid var(--accent)'" onblur="this.style.outline='none'" required>
+                        <label for="customer-name" style="display:block; font-size:0.9rem; margin-bottom:8px; color:var(--text-primary); font-weight:800; text-transform:uppercase;">Nama Pemesan (Customer)</label>
+                        <input type="text" id="customer-name" placeholder="Masukkan nama Anda..." style="width:100%; padding:12px; border-radius:0; border:2px solid var(--border-color); background:#fff; color:var(--text-primary); font-family:inherit; outline:none; font-weight:700; box-shadow:4px 4px 0px var(--border-color) inset;" required>
                     </div>
                     <div class="summary-row">
                         <span>Subtotal</span>
@@ -153,30 +163,11 @@
                             <i class="fas fa-qrcode"></i>
                             <div>
                                 <h4>QRIS</h4>
-                                <p>Gopay, OVO, ShopeePay</p>
+                                <p>Gopay, OVO, Dana, ShopeePay, M-Banking</p>
                             </div>
                         </div>
                     </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="Bank Transfer">
-                        <div class="payment-card">
-                            <i class="fas fa-university"></i>
-                            <div>
-                                <h4>Transfer Bank</h4>
-                                <p>BCA, Mandiri, BNI</p>
-                            </div>
-                        </div>
-                    </label>
-                    <label class="payment-option">
-                        <input type="radio" name="payment" value="E-Wallet">
-                        <div class="payment-card">
-                            <i class="fas fa-wallet"></i>
-                            <div>
-                                <h4>E-Wallet</h4>
-                                <p>Dana, LinkAja</p>
-                            </div>
-                        </div>
-                    </label>
+
                     <label class="payment-option">
                         <input type="radio" name="payment" value="Cash">
                         <div class="payment-card">
@@ -191,6 +182,26 @@
             </div>
             <div class="modal-footer">
                 <button id="btn-confirm-payment" class="btn-primary btn-block">Konfirmasi Pembayaran</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- QRIS Payment Modal -->
+    <div id="qris-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Scan QRIS Pembayaran</h3>
+                <button class="btn-close" id="btn-close-qris" onclick="closeQrisModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 0.9rem;">Buka aplikasi GoPay, OVO, Dana, ShopeePay atau Mobile Banking Anda untuk scan QRIS di bawah ini:</p>
+                <div id="qris-container" style="background:#fff; padding:20px; border-radius:16px; display:inline-block; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+                    <!-- QRIS is generated here via JS -->
+                </div>
+                <h3 id="qris-amount" style="color:var(--accent); font-size:1.5rem; font-weight:700; margin-bottom:10px;">Rp 0</h3>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-qris-paid" class="btn-primary btn-block" onclick="processAfterQris()">Saya Sudah Bayar</button>
             </div>
         </div>
     </div>

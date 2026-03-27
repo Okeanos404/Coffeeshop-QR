@@ -1,5 +1,7 @@
 // Checkout and Payment Handling
 
+let currentOrderDetails = {};
+
 function processCheckout() {
     const customerNameInput = document.getElementById('customer-name').value.trim();
     const customerName = customerNameInput ? customerNameInput : 'Tamu';
@@ -8,9 +10,41 @@ function processCheckout() {
     const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
     const date = new Date().toLocaleString('id-ID');
 
+    currentOrderDetails = { orderId, date, totals, selectedPayment, customerName };
+
     document.getElementById('payment-modal').classList.remove('active');
 
-    generateThermalReceipt(orderId, date, totals, selectedPayment, customerName);
+    if (selectedPayment === 'QRIS') {
+        document.getElementById('qris-modal').classList.add('active');
+        document.getElementById('qris-amount').textContent = formatRupiah(totals.total);
+        const qrContainer = document.getElementById('qris-container');
+        qrContainer.innerHTML = '';
+        new QRCode(qrContainer, {
+            text: `QRIS-PAYMENT-${orderId}-${totals.total}`,
+            width: 200,
+            height: 200,
+            colorDark : "#000000",
+            colorLight : "#ffffff"
+        });
+    } else {
+        generateThermalReceipt(orderId, date, totals, selectedPayment, customerName);
+        document.getElementById('receipt-modal').classList.add('active');
+    }
+}
+
+function closeQrisModal() {
+    document.getElementById('qris-modal').classList.remove('active');
+}
+
+function processAfterQris() {
+    closeQrisModal();
+    generateThermalReceipt(
+        currentOrderDetails.orderId, 
+        currentOrderDetails.date, 
+        currentOrderDetails.totals, 
+        currentOrderDetails.selectedPayment, 
+        currentOrderDetails.customerName
+    );
     document.getElementById('receipt-modal').classList.add('active');
 }
 
@@ -39,7 +73,7 @@ function generateThermalReceipt(orderId, date, totals, paymentMethod, customerNa
     container.innerHTML = `
         <div class="receipt-content">
             <div class="receipt-header" style="text-align:center;">
-                <img src="img/logo.png" alt="Logo" style="width:60px; height:60px; border-radius:50%; object-fit:cover; margin:0 auto 10px auto; filter:grayscale(100%);">
+                <img src="assets/img/vintage_logo.png" alt="Logo" style="width:60px; height:60px; border:2px solid #000; object-fit:cover; margin:0 auto 10px auto; filter:grayscale(100%);">
                 <h2>Brew & Bites</h2>
                 <div style="font-size: 0.8rem; color: #555;">Jl. Kopi No. 1, Jakarta</div>
             </div>
@@ -62,27 +96,12 @@ function generateThermalReceipt(orderId, date, totals, paymentMethod, customerNa
             </div>
             
             <div class="receipt-footer">
-                <div id="qr-receipt" class="qr-receipt-wrapper"></div>
+                <br>
                 ${instructionLine}<br><br>
                 Terima Kasih atas kunjungan Anda
             </div>
         </div>
     `;
-
-    // Generate small QR Code for the receipt
-    setTimeout(() => {
-        const qrEl = document.getElementById('qr-receipt');
-        if(qrEl) {
-            qrEl.innerHTML = '';
-            new QRCode(qrEl, {
-                text: orderId,
-                width: 100,
-                height: 100,
-                colorDark : "#000000",
-                colorLight : "#ffffff"
-            });
-        }
-    }, 100);
 }
 
 function finishOrder() {

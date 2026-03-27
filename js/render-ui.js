@@ -8,24 +8,48 @@ function renderProducts(category = 'All') {
 
     const filtered = category === 'All' ? products : products.filter(p => p.category === category);
 
-    filtered.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="product-img">
+    // Initial Skeleton Rendering
+    for(let i = 0; i < (filtered.length || 6); i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'product-card skeleton-card';
+        skeleton.innerHTML = `
+            <div class="skeleton-img skeleton"></div>
             <div class="product-info">
-                <div class="product-title">${product.name}</div>
-                <div class="product-desc">${product.description}</div>
-                <div class="product-bottom">
-                    <span class="product-price">${formatRupiah(product.price)}</span>
-                    <button class="btn-add" data-id="${product.id}" onclick="openCustomizationModal('${product.id}')">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                <div class="skeleton-text skeleton" style="width: 70%; margin-bottom: 8px;"></div>
+                <div class="skeleton-text skeleton" style="width: 100%; margin-bottom: 4px;"></div>
+                <div class="skeleton-text skeleton" style="width: 50%; margin-bottom: 12px; height: 8px;"></div>
+                <div class="product-bottom" style="margin-top: auto;">
+                    <div class="skeleton-text skeleton" style="width: 40%; height: 20px;"></div>
+                    <div class="skeleton" style="width: 32px; height: 32px; border-radius: 50%;"></div>
                 </div>
             </div>
         `;
-        grid.appendChild(card);
-    });
+        grid.appendChild(skeleton);
+    }
+
+    // Simulate short network delay for skeleton effect
+    setTimeout(() => {
+        grid.innerHTML = '';
+        filtered.forEach((product, index) => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.style.animationDelay = `${index * 0.05}s`;
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">${product.name}</div>
+                    <div class="product-desc">${product.description}</div>
+                    <div class="product-bottom">
+                        <span class="product-price">${formatRupiah(product.price)}</span>
+                        <button class="btn-add" data-id="${product.id}" onclick="openCustomizationModal('${product.id}')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }, 600); // 600ms skeleton
 }
 
 function renderCart() {
@@ -92,6 +116,13 @@ function openCustomizationModal(productId) {
             <p>${formatRupiah(currentCustomizationProduct.price)}</p>
         </div>
     `;
+
+    const chipSection = document.getElementById('quick-chips').parentElement;
+    if (currentCustomizationProduct.category === 'Snack' || currentCustomizationProduct.category === 'Camilan') {
+        chipSection.style.display = 'none';
+    } else {
+        chipSection.style.display = 'block';
+    }
 
     document.getElementById('modal-price').textContent = formatRupiah(currentCustomizationProduct.price);
     document.getElementById('customization-modal').classList.add('active');

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- QRCode.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Icon Web -->
@@ -219,7 +221,7 @@
                 <!-- Receipt inner will be dynamically generated here -->
             </div>
             <div class="modal-footer hide-print">
-                <button class="btn-secondary btn-block mb-2" onclick="window.print()"><i class="fas fa-print"></i> Cetak/Simpan PDF</button>
+                <button class="btn-secondary btn-block mb-2" onclick="downloadReceiptPDF()"><i class="fas fa-download"></i> Auto-Download PDF</button>
                 <button id="btn-finish-order" class="btn-primary btn-block">Selesai Berbelanja</button>
             </div>
         </div>

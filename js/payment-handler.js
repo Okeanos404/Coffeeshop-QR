@@ -111,3 +111,17 @@ function finishOrder() {
     document.getElementById('receipt-modal').classList.remove('active');
     switchView('view-menu');
 }
+
+function downloadReceiptPDF() {
+    const element = document.getElementById('receipt-container');
+    const opt = {
+        margin:       0.5,
+        filename:     `Struk_${currentOrderDetails.orderId || 'BrewBites'}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    
+    // Auto-download PDF
+    html2pdf().set(opt).from(element).save();
+}

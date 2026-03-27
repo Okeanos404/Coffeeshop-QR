@@ -81,9 +81,9 @@ High-quality, pre-generated 500x500 PNG QR Codes are already available in the `a
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="assets/QR/Meja_01_t1.png" alt="QR Meja 01" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 01</em></td>
-      <td align="center"><img src="assets/QR/Meja_02_t2.png" alt="QR Meja 02" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 02</em></td>
-      <td align="center"><img src="assets/QR/Meja_03_t3.png" alt="QR Meja 03" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 03</em></td>
+      <td align="center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://Okeanos404.github.io/Coffeeshop-QR/?table=t1" alt="QR Meja 01" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 01</em></td>
+      <td align="center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://Okeanos404.github.io/Coffeeshop-QR/?table=t2" alt="QR Meja 02" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 02</em></td>
+      <td align="center"><img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://Okeanos404.github.io/Coffeeshop-QR/?table=t3" alt="QR Meja 03" width="150" style="border: 2px solid #1e592f;"><br><em>Meja 03</em></td>
     </tr>
   </table>
 </div>

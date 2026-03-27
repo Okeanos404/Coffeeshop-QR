@@ -113,23 +113,30 @@ function finishOrder() {
 }
 
 function downloadReceiptPDF() {
-    const element = document.getElementById('receipt-container');
+    // Target the inner content directly to bypass any overflow/scroll clipping from the modal wrapper
+    const element = document.getElementById('receipt-container').querySelector('.receipt-content');
     
-    // Calculate dynamic height for an 80mm thermal receipt
-    const elementWidth = element.offsetWidth;
-    const elementHeight = element.offsetHeight;
+    // Use scrollWidth & scrollHeight to get the full exact dimensions even if there are 20+ items
+    const elementWidth = element.scrollWidth;
+    const elementHeight = element.scrollHeight;
+    
+    // Define thermal receipt width (80mm)
     const widthMm = 80;
-    // Add a small buffer to height
+    // Calculate responsive proportional height in mm
     const heightMm = (elementHeight * widthMm) / elementWidth + 5; 
 
     const opt = {
-        margin:       0, // No margin for thermal receipt look
+        margin:       [2, 0, 2, 0], // Slight padding top and bottom for neatness
         filename:     `Struk_${currentOrderDetails.orderId || 'BrewBites'}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 3 }, // High scale for crisp text
+        html2canvas:  { 
+            scale: 3,            // High scale for crisp text
+            scrollY: 0,          // Force start at top
+            windowHeight: elementHeight // Force html2canvas viewport to see the full length
+        },
         jsPDF:        { unit: 'mm', format: [widthMm, heightMm], orientation: 'portrait' }
     };
     
-    // Auto-download PDF tailored for mobile screens (like a real digital struct)
+    // Generate and Auto-Download the perfectly sized PDF
     html2pdf().set(opt).from(element).save();
 }

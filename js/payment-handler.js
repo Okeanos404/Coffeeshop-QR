@@ -114,14 +114,22 @@ function finishOrder() {
 
 function downloadReceiptPDF() {
     const element = document.getElementById('receipt-container');
+    
+    // Calculate dynamic height for an 80mm thermal receipt
+    const elementWidth = element.offsetWidth;
+    const elementHeight = element.offsetHeight;
+    const widthMm = 80;
+    // Add a small buffer to height
+    const heightMm = (elementHeight * widthMm) / elementWidth + 5; 
+
     const opt = {
-        margin:       0.5,
+        margin:       0, // No margin for thermal receipt look
         filename:     `Struk_${currentOrderDetails.orderId || 'BrewBites'}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        html2canvas:  { scale: 3 }, // High scale for crisp text
+        jsPDF:        { unit: 'mm', format: [widthMm, heightMm], orientation: 'portrait' }
     };
     
-    // Auto-download PDF
+    // Auto-download PDF tailored for mobile screens (like a real digital struct)
     html2pdf().set(opt).from(element).save();
 }

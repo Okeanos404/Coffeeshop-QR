@@ -23,6 +23,7 @@
 ## ✨ Key Features
 
 - **📱 Mobile-First Retro UI/UX:** A pristine *Street Vintage 1999-2000* design (`#f4edde` Muted Cream background, `#1e592f` Forest Green accents, blocky shadow buttons) optimized for seamless mobile viewing.
+- **🎮 Procedural 8-Bit Background:** Features an authentic, hardware-accelerated PlayStation controller icon floating background (`<canvas>`), rendered procedurally via Data URIs to strictly maintain unaliased 16-bit sharpness with dynamic depth-of-field and zero file bloat.
 - **🔳 Table QR Session Locking:** Dynamically generated unique QR codes for each table. Upon scanning, the customer's session is locked to their specific table.
 - **📸 High-Quality Aesthetic Catalog:** A categorized menu (Coffee, Non-Coffee, Snacks) featuring high-quality, concept-accurate, vintage product photography.
 - **⚙️ Advanced Order Customization:** Quick-select chips (e.g., *Less Sugar, Extra Ice, Hot*) and custom text notes allow customers to personalize every order.
@@ -52,6 +53,7 @@ We believe in keeping things fast, simple, and dependency-free for local busines
  ┣ 📂 css
  ┃ ┗ 📜 style.css             # Main stylesheet (Retro theme variables, Modals, Responsive logic)
  ┣ 📂 js
+ ┃ ┣ 📜 bg-animation.js       # Procedural 8-bit PlayStation joystick background animation engine
  ┃ ┣ 📜 cart-engine.js        # Logic for cart array state, grouping, and PB1 grand totals
  ┃ ┣ 📜 database.js           # Static internal database arrays (Products and Tables config)
  ┃ ┣ 📜 main.js               # Application initialization and global event listeners

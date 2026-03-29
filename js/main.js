@@ -7,6 +7,41 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartBadge();
     }
 
+    // Pax Modal Controls
+    let paxTempValue = 0; // Default start value
+    const paxDisplay = document.getElementById('pax-count-display');
+    const btnPaxMinus = document.getElementById('btn-pax-minus');
+    const btnPaxPlus = document.getElementById('btn-pax-plus');
+
+    if (btnPaxMinus && btnPaxPlus && paxDisplay) {
+        btnPaxMinus.addEventListener('click', () => {
+            if (paxTempValue > 0) {
+                paxTempValue--;
+                paxDisplay.textContent = paxTempValue;
+            }
+        });
+        
+        btnPaxPlus.addEventListener('click', () => {
+            if (paxTempValue < 20) {
+                paxTempValue++;
+                paxDisplay.textContent = paxTempValue;
+            }
+        });
+    }
+
+    // Pax Modal Submission
+    const btnSubmitPax = document.getElementById('btn-submit-pax');
+    if (btnSubmitPax) {
+        btnSubmitPax.addEventListener('click', () => {
+            if (paxTempValue && paxTempValue > 0) {
+                window.paxCount = paxTempValue;
+                document.getElementById('pax-modal').classList.remove('active');
+            } else {
+                alert('Silakan masukkan jumlah orang yang valid (minimal 1).');
+            }
+        });
+    }
+
     // Category Tabs
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {

@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('active-table-badge').textContent = table.name;
             // Store active table
             window.activeTable = table;
+            
+            // Show Pax Modal before letting user interact with the app
+            document.getElementById('pax-modal').classList.add('active');
         } else {
             alert('Meja tidak valid!');
             window.location.href = window.location.pathname;

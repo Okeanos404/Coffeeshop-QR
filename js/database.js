@@ -11,7 +11,14 @@ const products = [
     { id: 'nc2', name: 'Taro Latte', price: 25000, category: 'Non-Coffee', description: 'Minuman susu rasa taro yang manis dan creamy.', image: 'assets/img/taro.png' },
     { id: 'nc3', name: 'Red Velvet Latte', price: 26000, category: 'Non-Coffee', description: 'Rasa red velvet cake klasik dalam secangkir minuman hangat.', image: 'assets/img/redvelvet.png' },
     { id: 'nc4', name: 'Lychee Tea', price: 22000, category: 'Non-Coffee', description: 'Teh melati segar dengan potongan buah leci asli.', image: 'assets/img/lycheetea.png' },
-    { id: 'nc5', name: 'Signature Chocolate', price: 28000, category: 'Non-Coffee', description: 'Cokelat pekat ala artisan yang memanjakan lidah.', image: 'assets/img/choco.png' }
+    { id: 'nc5', name: 'Signature Chocolate', price: 28000, category: 'Non-Coffee', description: 'Cokelat pekat ala artisan yang memanjakan lidah.', image: 'assets/img/choco.png' },
+    { id: 's4', name: 'Caramel Croffle', price: 28000, category: 'Snack', description: 'Croffle renyah disajikan dengan saus karamel lezat.', image: 'assets/img/caramel_croffle.png' },
+    { id: 's5', name: 'Mix Platter', price: 42000, category: 'Snack', description: 'Kombinasi sosis, chicken wings, onion rings, dan potato wedges.', image: 'assets/img/mix_platter.png' },
+    { id: 'rb1', name: 'Chicken Nanban Rice Bowl', price: 38000, category: 'Rice Bowls', description: 'Ayam renyah berbalut saus nanban dan tartar diatas nasi hangat.', image: 'assets/img/chicken_nanban.png' },
+    { id: 'rb2', name: 'Salted Egg Dory', price: 40000, category: 'Rice Bowls', description: 'Ikan dory gurih berbalur saus telur asin creamy.', image: 'assets/img/salted_egg_dory.png' },
+    { id: 'rb3', name: 'Beef Yakiniku Donburi', price: 45000, category: 'Rice Bowls', description: 'Irisan daging sapi manis gurih khas Jepang.', image: 'assets/img/beef_yakiniku.png' },
+    { id: 'rb4', name: 'Chicken Sambal Matah Rice', price: 35000, category: 'Rice Bowls', description: 'Kombinasi ayam goreng dan pedas segar sambal matah.', image: 'assets/img/chicken_sambal.png' },
+    { id: 'rb5', name: 'Crazy Rice Bowl', price: 37000, category: 'Rice Bowls', description: 'Nasi Gila klasik dengan sosis, bakso, dan telur bumbu rahasia.', image: 'assets/img/crazy_rice_bowl.png' }
 ];
 
 const tables = [

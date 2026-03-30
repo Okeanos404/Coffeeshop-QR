@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Pemesanan QR Coffee Shop</title>
+    <meta name="description" content="Brew & Bites — Sistem pemesanan dine-in berbasis QR code untuk coffee shop modern.">
+    <title>Brew & Bites | QR Ordering</title>
     <!-- Google Fonts Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
@@ -15,71 +16,95 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Icon Web -->
-    <link rel="Icon" href="assets/favicon.ico">
+    <link rel="icon" href="assets/favicon.ico">
 </head>
 <body>
 
-    <!-- Landing Page (QR Simulation) -->
-    <div id="landing-page" class="page active">
+    <!-- ═══ Landing Page (QR Simulation) ═══ -->
+    <div id="landing-page" class="page active" role="main">
         <header>
-            <img src="assets/img/vintage_logo.png" alt="Brew & Bites Logo" style="width:120px; height:auto; border: 3px solid var(--border-color); box-shadow: 4px 4px 0px var(--border-color); margin:0 auto 15px auto; background: var(--card-bg); padding: 5px;">
-            <h1 style="text-shadow: 3px 3px 0px var(--border-color); margin-bottom: 5px;">Brew & Bites</h1>
-            <p style="font-size: 1.1rem; font-weight: 700;">Silakan scan QR Meja untuk mulai memesan</p>
+            <img src="assets/img/vintage_logo.png" alt="Brew &amp; Bites Logo" class="landing-logo">
+            <h1>Brew &amp; Bites</h1>
+            <p class="landing-subtitle">Silakan scan QR Meja untuk mulai memesan</p>
         </header>
-        <div class="qr-container" id="qr-container">
+        <div class="qr-container" id="qr-container" role="list" aria-label="Pilihan Meja">
             <!-- QR Codes will be injected here via JS -->
         </div>
     </div>
 
-    <!-- Main App Container -->
-    <div id="app-container" class="page">
+    <!-- ═══ Main App Container ═══ -->
+    <div id="app-container" class="page" role="main">
+
         <!-- Header -->
-        <header class="app-header">
+        <header class="app-header" role="banner">
             <div class="header-content">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <img src="assets/img/vintage_logo.png" alt="Logo" style="width:35px; height:35px; border: 2px solid var(--border-color); object-fit:cover; background: #fff;">
-                    <h2 style="margin:0;">Brew & Bites</h2>
+                <div class="header-logo-group">
+                    <img src="assets/img/vintage_logo.png" alt="Logo Brew &amp; Bites" class="header-logo" loading="lazy">
+                    <h2>Brew &amp; Bites</h2>
                 </div>
-                <span id="active-table-badge" class="table-badge">Meja --</span>
+                <span id="active-table-badge" class="table-badge" aria-live="polite">Meja --</span>
             </div>
         </header>
 
         <!-- Menu Views Container -->
         <main class="main-content">
-            <!-- Menu View -->
-            <div id="view-menu" class="view active">
+
+            <!-- ─── Menu View ─── -->
+            <div id="view-menu" class="view active" role="region" aria-label="Menu">
+
                 <!-- Welcome Banner -->
-                <div style="background: var(--card-bg); border: 2px solid var(--border-color); box-shadow: 4px 4px 0px var(--border-color); padding: 20px; text-align: center; margin-bottom: 20px;">
-                    <h2 style="font-size: 1.5rem; text-transform: uppercase; font-weight: 800; margin-bottom: 5px; color: var(--accent); text-shadow: 1px 1px 0px var(--border-color); font-style: italic;">Sip, Chill, & Vibe</h2>
-                    <p style="font-weight: 700; font-size: 0.9rem; color: var(--text-primary);">
-                        Udah dapet spot pw? Duduk santai aja, pesananmu biar kami yang siapin.<br>
-                        Cek menu asik kita di bawah dan langsung order dari mejamu. Enjoy the retro vibes!
+                <div class="welcome-banner anim-banner">
+                    <h2>Sip, Chill, &amp; Vibe</h2>
+                    <p>
+                        Duduk santai aja, pesananmu biar kami yang siapin.<br>
+                        Cek menu di bawah &amp; order langsung dari mejamu!
                     </p>
                 </div>
 
-                <div class="category-tabs">
-                    <button class="tab-btn active" data-category="All">Semua</button>
-                    <button class="tab-btn" data-category="Coffee">Coffee</button>
-                    <button class="tab-btn" data-category="Non-Coffee">Non-Coffee</button>
-                    <button class="tab-btn" data-category="Snack">Snack</button>
-                    <button class="tab-btn" data-category="Rice Bowls">Rice Bowls</button>
+                <!-- Search Bar -->
+                <div class="search-bar-wrapper anim-banner">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input
+                        type="search"
+                        id="search-input"
+                        placeholder="Cari menu..."
+                        autocomplete="off"
+                        aria-label="Cari menu"
+                    >
                 </div>
-                <div class="product-grid" id="product-grid">
+
+                <!-- Category Tabs -->
+                <nav class="category-tabs anim-tabs" aria-label="Filter kategori menu">
+                    <button class="tab-btn active" data-category="All" aria-pressed="true">Semua</button>
+                    <button class="tab-btn" data-category="Coffee" aria-pressed="false">Coffee</button>
+                    <button class="tab-btn" data-category="Non-Coffee" aria-pressed="false">Non-Coffee</button>
+                    <button class="tab-btn" data-category="Snack" aria-pressed="false">Snack</button>
+                    <button class="tab-btn" data-category="Rice Bowls" aria-pressed="false">Rice Bowls</button>
+                </nav>
+
+                <div class="product-grid" id="product-grid" role="list" aria-label="Daftar menu">
                     <!-- Products rendered via JS -->
                 </div>
             </div>
 
-            <!-- Cart View -->
-            <div id="view-cart" class="view">
-                <h3>Keranjang Pesanan</h3>
-                <div id="cart-items-container">
+            <!-- ─── Cart View ─── -->
+            <div id="view-cart" class="view" role="region" aria-label="Keranjang Pesanan">
+                <h3 class="cart-view-title">Keranjang Pesanan</h3>
+                <div id="cart-items-container" aria-live="polite">
                     <!-- Cart items rendered via JS -->
                 </div>
-                
+
                 <div class="cart-summary hide" id="cart-summary">
-                    <div class="customer-info-section mb-4" style="border-bottom: 1px dashed var(--border-color); padding-bottom: 15px;">
-                        <label for="customer-name" style="display:block; font-size:0.9rem; margin-bottom:8px; color:var(--text-primary); font-weight:800; text-transform:uppercase;">Nama Pemesan (Customer)</label>
-                        <input type="text" id="customer-name" placeholder="Masukkan nama Anda..." style="width:100%; padding:12px; border-radius:0; border:2px solid var(--border-color); background:#fff; color:var(--text-primary); font-family:inherit; outline:none; font-weight:700; box-shadow:4px 4px 0px var(--border-color) inset;" required>
+                    <div class="cart-customer-section mb-4">
+                        <label for="customer-name" class="cart-customer-label">Nama Pemesan (Customer)</label>
+                        <input
+                            type="text"
+                            id="customer-name"
+                            class="customer-name-input"
+                            placeholder="Masukkan nama Anda..."
+                            required
+                            aria-required="true"
+                        >
                     </div>
                     <div class="summary-row">
                         <span>Subtotal</span>
@@ -95,36 +120,41 @@
                     </div>
                     <button id="btn-checkout" class="btn-primary btn-block mt-4">Pilih Pembayaran</button>
                 </div>
-                
-                <div id="empty-cart-msg" class="empty-state">
-                    <i class="fas fa-shopping-basket"></i>
+
+                <div id="empty-cart-msg" class="empty-state" role="status">
+                    <i class="fas fa-shopping-basket" aria-hidden="true"></i>
                     <p>Keranjang masih kosong</p>
                 </div>
             </div>
         </main>
 
         <!-- Sticky Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-item active" data-target="view-menu">
-                <i class="fas fa-bars"></i>
+        <nav class="bottom-nav" aria-label="Navigasi utama">
+            <button class="nav-item active" data-target="view-menu" aria-label="Menu" aria-current="page">
+                <i class="fas fa-bars" aria-hidden="true"></i>
                 <span>Menu</span>
             </button>
-            <button class="nav-item" data-target="view-cart">
+            <button class="nav-item" data-target="view-cart" aria-label="Keranjang">
                 <div class="cart-icon-wrapper">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="badge" id="cart-badge">0</span>
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="badge" id="cart-badge" aria-live="polite">0</span>
                 </div>
                 <span>Keranjang</span>
             </button>
         </nav>
     </div>
 
-    <!-- Customization Modal -->
-    <div id="customization-modal" class="modal-overlay">
+    <!-- ═══ Toast Notification Container ═══ -->
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- ═══ Customization Modal ═══ -->
+    <div id="customization-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Sesuaikan Pesanan</h3>
-                <button class="btn-close" id="btn-close-modal"><i class="fas fa-times"></i></button>
+                <h3 id="modal-title">Sesuaikan Pesanan</h3>
+                <button class="btn-close" id="btn-close-modal" aria-label="Tutup modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <div id="modal-product-info" class="modal-product-info">
@@ -132,13 +162,13 @@
                 </div>
 
                 <div class="customization-section">
-                    <label>Pilihan Cepat</label>
-                    <div class="chip-group" id="quick-chips">
-                        <button class="chip">Less Sugar</button>
-                        <button class="chip">Normal Sugar</button>
-                        <button class="chip">Extra Ice</button>
-                        <button class="chip">Less Ice</button>
-                        <button class="chip">Hot</button>
+                    <label id="label-quick-options">Pilihan Cepat</label>
+                    <div class="chip-group" id="quick-chips" role="group" aria-labelledby="label-quick-options">
+                        <button class="chip" aria-pressed="false">Less Sugar</button>
+                        <button class="chip" aria-pressed="false">Normal Sugar</button>
+                        <button class="chip" aria-pressed="false">Extra Ice</button>
+                        <button class="chip" aria-pressed="false">Less Ice</button>
+                        <button class="chip" aria-pressed="false">Hot</button>
                     </div>
                 </div>
 
@@ -148,58 +178,65 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btn-add-to-cart" class="btn-primary btn-block">Tambah ke Keranjang - <span id="modal-price">Rp 0</span></button>
+                <button id="btn-add-to-cart" class="btn-primary btn-block">Tambah ke Keranjang</button>
             </div>
         </div>
     </div>
 
-    <!-- Pax Modal (Number of People) -->
-    <div id="pax-modal" class="modal-overlay">
+    <!-- ═══ Pax Modal (Number of People) ═══ -->
+    <div id="pax-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="pax-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Informasi Meja</h3>
+                <h3 id="pax-title">Informasi Meja</h3>
             </div>
-            <div class="modal-body" style="text-align: center;">
-                <p style="margin-bottom: 20px; font-weight: 700; color: var(--text-secondary);">Berapa jumlah pengunjung di meja ini?</p>
-                <div class="customization-section" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
-                    <label style="margin-bottom:15px; font-size:0.9rem; text-transform:uppercase; font-weight:800; color:var(--text-primary);">Jumlah Pengunjung</label>
-                    <div style="display: flex; align-items: center; gap: 25px; background: var(--bg-color); padding: 15px 25px; border: 2px solid var(--border-color); box-shadow: 4px 4px 0px var(--border-color);">
-                        <button id="btn-pax-minus" style="width: 45px; height: 45px; background: var(--accent); border: 2px solid var(--border-color); color: #fff; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; box-shadow: 2px 2px 0px var(--border-color);"><i class="fas fa-minus"></i></button>
-                        <span id="pax-count-display" style="font-size: 1.8rem; font-weight: 800; min-width: 60px; text-align: center; background: #ffffff; border: 2px solid var(--border-color); padding: 6px 16px; display: inline-block;">0</span>
-                        <button id="btn-pax-plus" style="width: 45px; height: 45px; background: var(--accent); border: 2px solid var(--border-color); color: #fff; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; box-shadow: 2px 2px 0px var(--border-color);"><i class="fas fa-plus"></i></button>
+            <div class="modal-body modal-body-centered">
+                <p class="modal-body-text">Berapa jumlah pengunjung di meja ini?</p>
+                <div class="pax-stepper-section">
+                    <span class="pax-stepper-label">Jumlah Pengunjung</span>
+                    <div class="pax-stepper">
+                        <button id="btn-pax-minus" class="btn-pax" aria-label="Kurangi jumlah pengunjung">
+                            <i class="fas fa-minus" aria-hidden="true"></i>
+                        </button>
+                        <span id="pax-count-display" class="pax-display" aria-live="polite" aria-label="Jumlah pengunjung">0</span>
+                        <button id="btn-pax-plus" class="btn-pax" aria-label="Tambah jumlah pengunjung">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btn-submit-pax" class="btn-primary btn-block">Lanjut ke Menu <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></button>
+                <button id="btn-submit-pax" class="btn-primary btn-block">
+                    Lanjut ke Menu <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Payment Selection Modal -->
-    <div id="payment-modal" class="modal-overlay">
+    <!-- ═══ Payment Selection Modal ═══ -->
+    <div id="payment-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="payment-title">
         <div class="modal-content bottom-sheet">
             <div class="modal-header">
-                <h3>Metode Pembayaran</h3>
-                <button class="btn-close" id="btn-close-payment"><i class="fas fa-times"></i></button>
+                <h3 id="payment-title">Metode Pembayaran</h3>
+                <button class="btn-close" id="btn-close-payment" aria-label="Tutup pilihan pembayaran">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="payment-methods">
+                <div class="payment-methods" role="radiogroup" aria-label="Pilih metode pembayaran">
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="QRIS" checked>
+                        <input type="radio" name="payment" value="QRIS" checked aria-label="QRIS">
                         <div class="payment-card">
-                            <i class="fas fa-qrcode"></i>
+                            <i class="fas fa-qrcode" aria-hidden="true"></i>
                             <div>
                                 <h4>QRIS</h4>
                                 <p>Gopay, OVO, Dana, ShopeePay, M-Banking</p>
                             </div>
                         </div>
                     </label>
-
                     <label class="payment-option">
-                        <input type="radio" name="payment" value="Cash">
+                        <input type="radio" name="payment" value="Cash" aria-label="Tunai">
                         <div class="payment-card">
-                            <i class="fas fa-money-bill-wave"></i>
+                            <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
                             <div>
                                 <h4>Tunai (Bayar di Kasir)</h4>
                                 <p>Bayar langsung ke kasir</p>
@@ -214,19 +251,21 @@
         </div>
     </div>
 
-    <!-- QRIS Payment Modal -->
-    <div id="qris-modal" class="modal-overlay">
+    <!-- ═══ QRIS Payment Modal ═══ -->
+    <div id="qris-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="qris-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Scan QRIS Pembayaran</h3>
-                <button class="btn-close" id="btn-close-qris" onclick="closeQrisModal()"><i class="fas fa-times"></i></button>
+                <h3 id="qris-title">Scan QRIS Pembayaran</h3>
+                <button class="btn-close" id="btn-close-qris" onclick="closeQrisModal()" aria-label="Tutup QRIS">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-            <div class="modal-body" style="text-align:center;">
-                <p style="margin-bottom: 20px; color: var(--text-secondary); font-size: 0.9rem;">Buka aplikasi GoPay, OVO, Dana, ShopeePay atau Mobile Banking Anda untuk scan QRIS di bawah ini:</p>
-                <div id="qris-container" style="background:#fff; padding:20px; border-radius:16px; display:inline-block; margin-bottom:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+            <div class="modal-body modal-body-centered">
+                <p class="modal-body-subtext">Buka aplikasi GoPay, OVO, Dana, ShopeePay atau Mobile Banking Anda untuk scan QRIS di bawah ini:</p>
+                <div id="qris-container" class="qris-body-inner">
                     <!-- QRIS is generated here via JS -->
                 </div>
-                <h3 id="qris-amount" style="color:var(--accent); font-size:1.5rem; font-weight:700; margin-bottom:10px;">Rp 0</h3>
+                <h3 id="qris-amount" class="qris-amount">Rp 0</h3>
             </div>
             <div class="modal-footer">
                 <button id="btn-qris-paid" class="btn-primary btn-block" onclick="processAfterQris()">Saya Sudah Bayar</button>
@@ -234,18 +273,22 @@
         </div>
     </div>
 
-    <!-- Thermal Digital Receipt Modal -->
-    <div id="receipt-modal" class="modal-overlay">
+    <!-- ═══ Thermal Digital Receipt Modal ═══ -->
+    <div id="receipt-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="receipt-title">
         <div class="modal-content receipt-sheet">
             <div class="modal-header hide-print">
-                <h3>Struk Digital</h3>
-                <button class="btn-close" id="btn-close-receipt"><i class="fas fa-times"></i></button>
+                <h3 id="receipt-title">Struk Digital</h3>
+                <button class="btn-close" id="btn-close-receipt" aria-label="Tutup struk">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
             <div class="modal-body" id="receipt-container">
                 <!-- Receipt inner will be dynamically generated here -->
             </div>
             <div class="modal-footer hide-print">
-                <button class="btn-secondary btn-block mb-2" onclick="downloadReceiptPDF()"><i class="fas fa-download"></i> Cetak / Simpan PDF</button>
+                <button class="btn-secondary btn-block mb-2" onclick="downloadReceiptPDF()">
+                    <i class="fas fa-download" aria-hidden="true"></i> Cetak / Simpan PDF
+                </button>
                 <button id="btn-finish-order" class="btn-primary btn-block">Selesai Berbelanja</button>
             </div>
         </div>
@@ -258,9 +301,9 @@
     <script src="js/render-ui.js"></script>
     <script src="js/payment-handler.js"></script>
     <script src="js/main.js"></script>
-    
+
     <!-- Background Animation Layer -->
-    <canvas id="coffeeLayer"></canvas>
+    <canvas id="coffeeLayer" aria-hidden="true"></canvas>
     <script src="js/bg-animation.js"></script>
 </body>
 </html>

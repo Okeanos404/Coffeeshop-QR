@@ -54,6 +54,24 @@ Deploying or running this application locally is incredibly straightforward sinc
 3. **Simulate a Table Scan:**
    Opening the `index.html` base URL redirects you to the "QR Simulator" Landing Page. Clicking any of the simulated Table QR Codes will inject the `?table=tx` URL parameter and drop you directly into the active ordering flow.
 
+## 🔳 QR Table Codes
+
+Scan any of the QR codes below with your smartphone camera to simulate a live customer session for that table. Each code encodes a unique `?table=tx` URL pointing to the live GitHub Pages deployment.
+
+<div align="center">
+
+| Table 01 | Table 02 | Table 03 |
+|:---:|:---:|:---:|
+| ![QR Table 01](assets/QR/Meja_01_t1.png) | ![QR Table 02](assets/QR/Meja_02_t2.png) | ![QR Table 03](assets/QR/Meja_03_t3.png) |
+| `?table=t1` | `?table=t2` | `?table=t3` |
+
+</div>
+
+> [!NOTE]
+> QR codes are generated dynamically on the landing page via **QRCode.js** and point to the live GitHub Pages URL. The images above are static previews for documentation purposes.
+
+---
+
 ## 🎨 Theme & Design System
 
 The application utilizes a *Street Vintage 1999-2000* aesthetic that feels premium yet nostalgic. It implements thick solid borders, deep shadow offsets, and legible contrast.

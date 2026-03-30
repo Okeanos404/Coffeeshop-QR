@@ -22,7 +22,7 @@ const products = [
 ];
 
 const tables = [
-    { id: 't1', name: 'Meja 01' },
-    { id: 't2', name: 'Meja 02' },
-    { id: 't3', name: 'Meja 03' }
+    { id: 't1', name: 'Table 01' },
+    { id: 't2', name: 'Table 02' },
+    { id: 't3', name: 'Table 03' }
 ];
